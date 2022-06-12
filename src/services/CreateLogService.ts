@@ -10,7 +10,19 @@ class CreateLogService {
             }
         });
 
-        logModel.logTypeId = logType.id
+        if(logType != null)
+            logModel.logTypeId = logType.id
+        else
+        {
+            const createdLogType = await prismaClient.logType.create({
+                data: {
+                    nome: logTypeNome,
+                    descricao: logTypeNome
+                }
+            });
+
+            logModel.logTypeId = createdLogType.id
+        }
 
         const createdLog = await prismaClient.log.create({
             data: logModel
