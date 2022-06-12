@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Log {
+  id         String @id @default(uuid())
+  logTypeId String
+  socketId   String
+  nickName   String
+  value      String
+  created_at DateTime @default(now())
+  
+  logtypes LogType @relation(fields: [logTypeId],references: [id])
+
+  @@map("logs")
+}
+
+model LogType {
+  id         String @id @default(uuid())
+  nome       String
+  descricao  String
+
+
+  logs Log[]
+  @@map("logtypes")
+}
