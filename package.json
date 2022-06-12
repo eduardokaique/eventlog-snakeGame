@@ -5,7 +5,7 @@
   "main": "src/app.ts",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --exit-child src/server.ts",
-    "start": "node ./src/server.ts",
+    "start": "node ./src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
